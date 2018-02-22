@@ -1,0 +1,44 @@
+{
+  "name": "btcxreddit",
+  "version": "0.0.0",
+  "description": "",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "server.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "start": "./scripts/start.sh",
+    "build-ui": "./scripts/build-ui.sh"
+  },
+  "dependencies": {
+    "apicache": "1.2.0",
+    "axios": "0.17.1",
+    "blockchain.info": "2.11.0",
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "bunyan": "1.8.12",
+    "bunyan-prettystream": "^0.1.3",
+    "co": "^4.6.0",
+    "co-express": "^1.2.2",
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "^1.4.3",
+    "csvtojson": "1.1.9",
+    "dateformat": "^2.0.0",
+    "express": "^4.14.0",
+    "express-prettify": "0.0.10",
+    "express-session": "^1.14.2",
+    "mocha": "^3.2.0",
+    "mongodb": "^2.2.22",
+    "rockets": "1.2.4",
+    "safe-access": "0.1.0",
+    "snoostorm": "0.0.5",
+    "snoowrap": "1.15.2",
+    "ws": "4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "4.17.0",
+    "eslint-plugin-node": "6.0.0"
+  }
+}
