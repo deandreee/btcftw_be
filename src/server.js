@@ -32,6 +32,10 @@ co(function* () {
   if (!config.isDev) {
     logger.info('starting ui serve');
     app.use(express.static(path.join(__dirname, '../ui')));
+
+    app.get(/^(?!.*\/api).*$/, (req, res) => {
+      res.sendFile(path.join(__dirname, '../ui/index.html'));
+    });
   }
 
   routes.init(app);
@@ -50,8 +54,6 @@ co(function* () {
 
   yield dbCleaner.remove(); // test
   dbCleaner.start();
-
-  db.comments.insertOne({ a: 'wasd' });
 
   process.on('uncaughtException', function (err) {
     logger.fatal(err);

@@ -21,6 +21,54 @@ module.exports = () => {
   // For more information on getting credentials, see here: https://github.com/not-an-aardvark/reddit-oauth-helper
   const r = new snoowrap(creds);
 
+  api.get('/sub', wrap(function* (req, res) {
+
+    let subNames = [ 'bitcoin', 'ethereum', 'Ripple',  ];
+
+    let subs = [];
+
+    let ts = Date.now();
+
+    for (let subName of subNames) {
+      let sub = (yield axios.get(`https://www.reddit.com/r/${subName}/about.json`)).data;
+
+      // console.log('sub', sub);
+
+      let props = {
+        subName,
+        ts,
+        active_user_count: sub.data.active_user_count,
+        accounts_active: sub.data.accounts_active,
+        subscribers: sub.data.subscribers
+      }
+
+      subs.push(props);
+    }
+
+    res.send({ subs });
+  }));
+
+  api.get('/posts-count', wrap(function* (req, res) {
+
+    let subName = 'bitcoin';
+    let after = Math.floor((Date.now() - ms('24h')) / 1000);
+    let type = 'submission'; // comment / submission
+    let count = (yield axios.get(`https://api.pushshift.io/reddit/search/${type}/?subreddit=${subName}&metadata=true&size=0&after=${after}`)).data;
+
+    res.send({ count });
+  }));
+
+  api.get('/soc-stats', wrap(function* (req, res) {
+    let stats = yield db.soc_stats.find({ }).toArray();
+
+    let series = [];
+    for (let x of socStats.subList) {
+      series.push(stats.filter(y => y.subName === x.sub));
+    }
+
+    res.send({ stats, series });
+  }));
+
   api.get('/posts', cache('5 minutes'), wrap(function* (req, res) {
     let { log } = req;
     log.info('get /posts');
