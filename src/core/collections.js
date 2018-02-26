@@ -1,4 +1,5 @@
 module.exports = [
   'tickers_kraken_xbtusd',
-  'comments'
+  'comments',
+  'soc_stats'
 ];
