@@ -12,6 +12,8 @@ const creds = require('./creds');
 const db = require.main.require('./core/db');
 const statistics = require('blockchain.info/statistics');
 const csv = require('csvtojson');
+const socStats = require.main.require('./cron/socStats');
+const ms = require('ms');
 
 module.exports = () => {
 
@@ -28,6 +30,8 @@ module.exports = () => {
     let subs = [];
 
     let ts = Date.now();
+
+    subNames = [ 'Bytecoin', 'Populous', 'DigixDAO' ];
 
     for (let subName of subNames) {
       let sub = (yield axios.get(`https://www.reddit.com/r/${subName}/about.json`)).data;
@@ -62,11 +66,19 @@ module.exports = () => {
     let stats = yield db.soc_stats.find({ }).toArray();
 
     let series = [];
+
+    // filter 1
+    // let subList = socStats.subList.slice(4,14);
+
     for (let x of socStats.subList) {
-      series.push(stats.filter(y => y.subName === x.sub));
+      series.push({ subName: x.sub, data: stats.filter(y => y.subName === x.sub) });
     }
 
-    res.send({ stats, series });
+    // filter 2
+    // let subNames = subList.map(x => x.sub);
+    // stats = stats.filter(x => subNames.includes(x.subName));
+
+    res.send({ stats, series, subList: socStats.subList });
   }));
 
   api.get('/posts', cache('5 minutes'), wrap(function* (req, res) {
