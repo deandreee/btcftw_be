@@ -48,9 +48,9 @@ co(function* () {
     env: process.env.NODE_ENV
   }, 'server started');
 
-  snoo.start();
+  // snoo.start();
   wsServer.start(server);
-  priceLooper.start();
+  // priceLooper.start();
 
   yield dbCleaner.remove(); // test
   dbCleaner.start();

@@ -5,9 +5,12 @@ module.exports = () => function(req, res, next) {
 
   let props = {
     _v: config.version,
-    ip: req.ip,
-    userAgent: req.get('User-Agent')
+    ip: req.ip
   };
+
+  if (!config.isDev) {
+    userAgent: req.get('User-Agent')
+  }
 
   req.log = logger.child(props);
 

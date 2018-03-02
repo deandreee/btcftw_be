@@ -14,6 +14,7 @@ const statistics = require('blockchain.info/statistics');
 const csv = require('csvtojson');
 const socStats = require.main.require('./cron/socStats');
 const ms = require('ms');
+const utilsTimeout = require.main.require('./utils/utilsTimeout');
 
 module.exports = () => {
 
@@ -62,6 +63,35 @@ module.exports = () => {
     res.send({ count });
   }));
 
+  api.get('/posts-count-history', wrap(function* (req, res) {
+
+    let subName = 'helloicon';
+
+    let ranges = [
+      new Date('2018-02-24T00:00:00.000Z'),
+      new Date('2018-02-25T00:00:00.000Z'),
+      new Date('2018-02-26T00:00:00.000Z'),
+      new Date('2018-02-27T00:00:00.000Z'),
+      new Date('2018-02-28T00:00:00.000Z'),
+      new Date('2018-03-01T00:00:00.000Z'),
+      new Date('2018-03-02T00:00:00.000Z'),
+    ]
+
+    let data = [];
+    for (let x of ranges) {
+      let after = Math.floor((x.getTime() - ms('1d')) / 1000);
+      let before = Math.floor(x.getTime() / 1000);
+      let type = 'submission'; // comment / submission
+      let count = (yield axios.get(`https://api.pushshift.io/reddit/search/${type}/?subreddit=${subName}&metadata=true&size=0&after=${after}&before=${before}`)).data;
+
+      data.push({ after: new Date(x.getTime() - ms('1d')), before: x, count: count.metadata.total_results });
+
+      yield utilsTimeout.waitFor(3);
+    }
+
+    res.send({ data });
+  }));
+
   api.get('/soc-stats', wrap(function* (req, res) {
     let stats = yield db.soc_stats.find({ }).toArray();
 
@@ -81,10 +111,15 @@ module.exports = () => {
     res.send({ stats, series, subList: socStats.subList });
   }));
 
-  api.get('/posts', cache('5 minutes'), wrap(function* (req, res) {
+  api.get('/posts/:isPhone*?', cache('5 minutes'), wrap(function* (req, res) {
     let { log } = req;
-    log.info('get /posts');
-    let posts = yield r.getSubreddit('Bitcoin').getTop({ time: 'month', limit: 50 });
+    // log.info('get /posts');
+
+    let { isPhone } = req.params;
+    let limit = isPhone ? 20 : 50;
+    // log.info({ isPhone, limit }, 'posts');
+
+    let posts = yield r.getSubreddit('Bitcoin').getTop({ time: 'month', limit });
 
     // logger.info({ posts: [ posts[0], posts[1], posts[2], posts[3], posts[4] ]}, 'posts');
     // logger.info({ scores: posts.map(x => x.score) }, 'posts');
@@ -99,10 +134,16 @@ module.exports = () => {
 
   }));
 
-  api.get('/posts24', cache('5 minutes'), wrap(function* (req, res) {
+  api.get('/posts24/:isPhone*?', cache('5 minutes'), wrap(function* (req, res) {
     let { log } = req;
-    log.info('get /posts');
-    let posts = yield r.getSubreddit('Bitcoin').getTop({ time: 'day', limit: 50 });
+
+    let { isPhone } = req.params;
+    let limit = isPhone ? 20 : 50;
+
+    // log.info({ isPhone, limit }, 'posts24');
+    // log.info('get /posts');
+
+    let posts = yield r.getSubreddit('Bitcoin').getTop({ time: 'day', limit });
 
     // logger.info({ posts: [ posts[0], posts[1], posts[2], posts[3], posts[4] ]}, 'posts');
     // logger.info({ scores: posts.map(x => x.score) }, 'posts');
@@ -117,10 +158,14 @@ module.exports = () => {
 
   }));
 
-  api.get('/posts-eth', cache('5 minutes'), wrap(function* (req, res) {
+  api.get('/posts-eth/:isPhone*?', cache('5 minutes'), wrap(function* (req, res) {
     let { log } = req;
-    log.info('get /posts-eth');
-    let posts = yield r.getSubreddit('ethereum').getTop({ time: 'month', limit: 50 });
+    // log.info('get /posts-eth');
+
+    let { isPhone } = req.params;
+    let limit = isPhone ? 20 : 50;
+
+    let posts = yield r.getSubreddit('ethereum').getTop({ time: 'month', limit });
 
     posts = posts.map(x => {
       return { title: x.title, date: x.created_utc * 1000, permalink: x.permalink };
@@ -133,7 +178,9 @@ module.exports = () => {
 
   api.get('/btc', cache('5 minutes'), wrap(function* (req, res) {
     let { log } = req;
-    log.info('get /btc');
+
+    // log.info('get /btc');
+
     let resp = yield axios.get('https://blockchain.info/charts/market-price?timespan=30days&format=json');
     let btc = resp.data;
     res.send({ btc });
@@ -208,6 +255,7 @@ module.exports = () => {
   }));
 
   api.get('/btc24h', cache('5 minutes'), wrap(function* (req, res) {
+
     let { log } = req;
 
     log.info('get /btc24h');
