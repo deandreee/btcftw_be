@@ -50,7 +50,7 @@ co(function* () {
 
   // snoo.start();
   wsServer.start(server);
-  // priceLooper.start();
+  priceLooper.start();
 
   yield dbCleaner.remove(); // test
   dbCleaner.start();

@@ -263,7 +263,7 @@ module.exports = () => {
     let limit = 1440; // 24h
     let from = 'BTC'; // 24h
     let to = 'USD'; // 24h
-    let aggregate = 5; // 1min
+    let aggregate = 5; // 5 // 1min // 5m works ok but for 10/20 diff between points is too big again and we need to triangulate again in massMerge
 
     let resp = yield axios.get(`https://min-api.cryptocompare.com/data/histominute?fsym=${from}&tsym=${to}&limit=${limit}&aggregate=${aggregate}&e=CCCAGG`);
     let btc = resp.data;
