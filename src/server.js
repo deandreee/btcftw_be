@@ -53,7 +53,9 @@ co(function* () {
   wsServer.start(server);
   priceLooper.start();
 
-  socInterval.run();
+  if (!config.isDev) {
+    // socInterval.run();
+  }
 
   yield dbCleaner.remove(); // test
   dbCleaner.start();

@@ -44,6 +44,24 @@ let subList = [
 
 ];
 
+let calcSubscribersDiff = function*(props) {
+
+  // logger.info('calcSubscribersDiff start');
+  let prevArr = yield db.soc_stats.find({ subName: props.subName }).sort({ ts: -1 }).limit(1).toArray();
+
+  if (prevArr && prevArr[0]) {
+    let prev = prevArr[0];
+
+    let subscribers_diff = props.subscribers - prev.subscribers;
+
+    console.log(props.subName, props.ts, new Date(props.ts), subscribers_diff);
+
+    // logger.info('calcSubscribersDiff end');
+
+    return subscribers_diff;
+  }
+}
+
 let run = function*() {
   return yield co(function*() {
 
@@ -66,8 +84,11 @@ let run = function*() {
         accounts_active: sub.data.accounts_active,
         subscribers: sub.data.subscribers,
         posts_count: yield getCount(x.sub, 'submission'),
-        comments_count: yield getCount(x.sub, 'comment'),
+        comments_count: yield getCount(x.sub, 'comment')
       }
+
+      // logger.info('subscribers_diff start');
+      props.subscribers_diff = yield calcSubscribersDiff(props);
 
       logger.info(props, x.sub);
 
