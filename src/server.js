@@ -16,6 +16,7 @@ const snoo = require('./ws/snoo');
 const wsServer = require('./ws');
 const priceLooper = require('./ws/priceLooper');
 const dbCleaner = require('./ws/dbCleaner');
+const socInterval = require('./cron/socInterval');
 
 co(function* () {
 
@@ -51,6 +52,8 @@ co(function* () {
   // snoo.start();
   wsServer.start(server);
   priceLooper.start();
+
+  socInterval.run();
 
   yield dbCleaner.remove(); // test
   dbCleaner.start();

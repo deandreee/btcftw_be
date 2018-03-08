@@ -28,7 +28,7 @@ let start = () => {
 
   setInterval(async () => {
     let btc = await getBtcPriceNow();
-    logger.info({ usd: btc.USD }, 'BTCxUSD cryptocompare');
+    // logger.info({ usd: btc.USD }, 'BTCxUSD cryptocompare');
     ws.broadcast({ type: 'btc-price-now', btc });
   }, 5000);
 
