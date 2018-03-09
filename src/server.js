@@ -49,11 +49,11 @@ co(function* () {
     env: process.env.NODE_ENV
   }, 'server started');
 
-  // snoo.start();
+  snoo.start();
   wsServer.start(server);
   priceLooper.start();
 
-  // socInterval.run(); // COMPLETELY MOVED TO CRONBASE  
+  // socInterval.run(); // COMPLETELY MOVED TO CRONBASE
 
   yield dbCleaner.remove(); // test
   dbCleaner.start();
