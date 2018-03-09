@@ -92,7 +92,7 @@ module.exports = () => {
     res.send({ data });
   }));
 
-  api.get('/soc-stats', wrap(function* (req, res) {
+  api.get('/soc-stats', cache('5 minutes'), wrap(function* (req, res) {
     let stats = yield db.soc_stats_clean.find({ }).toArray();
 
     let series = [];
