@@ -93,7 +93,7 @@ module.exports = () => {
   }));
 
   api.get('/soc-stats', cache('5 minutes'), wrap(function* (req, res) {
-    let stats = yield db.soc_stats_clean.find({ }).toArray();
+    let stats = yield db.soc_stats_clean.find({ }).sort({ ts: 1 }).toArray();
 
     let series = [];
 
@@ -101,7 +101,7 @@ module.exports = () => {
     // let subList = socStats.subList.slice(4,14);
 
     for (let x of socStats.subList) {
-      series.push({ subName: x.sub, data: stats.filter(y => y.subName === x.sub) });
+      series.push({ subName: x.sub, color: x.color, data: stats.filter(y => y.subName === x.sub) });
     }
 
     // filter 2

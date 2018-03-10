@@ -7,39 +7,40 @@ const ms = require('ms');
 
 let subList = [
 
-  { name: 'bitcoin', sub: 'bitcoin' },
-  { name: 'ethereum', sub: 'ethereum' },
-  { name: 'ripple', sub: 'ripple' },
-  { name: 'bitcoincash', sub: 'bitcoincash' },
-  { name: 'litecoin', sub: 'litecoin' },
-  { name: 'cardano', sub: 'cardano' },
-  { name: 'neo', sub: 'neo' },
-  { name: 'stellar', sub: 'stellar' },
-  { name: 'eos', sub: 'eos' },
-  { name: 'iota', sub: 'iota' },
+  { name: 'bitcoin', sub: 'bitcoin', color: '#F7931A' },
+  { name: 'ethereum', sub: 'ethereum', color: '#282828' },
+  { name: 'ripple', sub: 'ripple', color: '#282828' },
+  { name: 'bitcoincash', sub: 'bitcoincash', color: '#4cca47' },
+  { name: 'litecoin', sub: 'litecoin', color: '#838383' },
+  { name: 'cardano', sub: 'cardano', color: '#3CC8C8' },
+  { name: 'neo', sub: 'neo', color: '#58BF00' },
+  { name: 'stellar', sub: 'stellar', color: '#08B5E5' },
+  { name: 'eos', sub: 'eos', color: '#19191A' },
+  { name: 'iota', sub: 'iota', color: '#FFFFFF' },
 
 
-  { name: 'dash', sub: 'dashpay' },
-  { name: 'monero', sub: 'monero' },
-  { name: 'EthereumClassic', sub: 'EthereumClassic' },
-  { name: 'nem', sub: 'nem' },
-  { name: 'Vechain', sub: 'Vechain' },
-  { name: 'TRON', sub: 'Tronix' },
-  { name: 'Tether', sub: 'Tether' },
-  { name: 'Lisk', sub: 'Lisk' },
-  { name: 'Qtum', sub: 'Qtum' },
+  { name: 'dash', sub: 'dashpay', color: '#1c75bc' },
+  { name: 'monero', sub: 'monero', color: '#FF6600' },
+  { name: 'EthereumClassic', sub: 'EthereumClassic', color: '#669073' },
+  { name: 'nem', sub: 'nem', color: '#41bf76' },
+  { name: 'Vechain', sub: 'Vechain', color: '#0375a9' },
+  { name: 'TRON', sub: 'Tronix', color: '#396a74' },
+  { name: 'Tether', sub: 'Tether', color: '#22a079' },
+  { name: 'Lisk', sub: 'Lisk', color: '#1A6896' },
+  { name: 'Qtum', sub: 'Qtum', color: '#359BCE' },
+  // this actually has 9 ... :/
+  { name: 'nano', sub: 'nanocurrency', color: '#24a0ed' }, // let's move anno up
 
 
-  { name: 'nano', sub: 'nanocurrency' },
-  { name: 'OmiseGO', sub: 'omise_go' },
-  { name: 'ICON', sub: 'helloicon' },
-  { name: 'Zcash', sub: 'zec' },
-  { name: 'Binance Coin', sub: 'BinanceExchange' },
-  { name: 'Steem', sub: 'steem' },
-  { name: 'verge', sub: 'vergecurrency' },
-  { name: 'Bytecoin', sub: 'BytecoinBCN' },
-  { name: 'Populous', sub: 'populous_platform' },
-  { name: 'DigixDAO', sub: 'digix' }
+  { name: 'OmiseGO', sub: 'omise_go', color: '#1A53F0' },
+  { name: 'ICON', sub: 'helloicon', color: '#4c6f8c' },
+  { name: 'Zcash', sub: 'zec', color: '#e5a93d' },
+  { name: 'Binance Coin', sub: 'BinanceExchange', color: '#edba2d' },
+  { name: 'Steem', sub: 'steem', color: '#1A5099' },
+  { name: 'verge', sub: 'vergecurrency', color: '#42AFB2' },
+  { name: 'Bytecoin', sub: 'BytecoinBCN', color: '#964F51' },
+  { name: 'Populous', sub: 'populous_platform', color: '#337ab7' },
+  { name: 'DigixDAO', sub: 'digix', color: '#FF3B3B' }
 
 
 ];
