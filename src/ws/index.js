@@ -15,10 +15,10 @@ let start = (server) => {
   wss.on('connection', function(ws) {
 
     try {
-      logger.info({ ip: access(ws, '_socket.remoteAddress') }, 'ws connection');
+      // logger.info({ ip: access(ws, '_socket.remoteAddress') }, 'ws connection');
 
       ws.on('close', function close() {
-        logger.info({ ip: access(ws, '_socket.remoteAddress') }, 'ws connection close');
+        // logger.info({ ip: access(ws, '_socket.remoteAddress') }, 'ws connection close');
       });
 
       ws.on('error', function (e) {

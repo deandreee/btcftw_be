@@ -9,7 +9,7 @@ let subList = [
 
   { name: 'bitcoin', sub: 'bitcoin', color: '#F7931A' },
   { name: 'ethereum', sub: 'ethereum', color: '#282828' },
-  { name: 'ripple', sub: 'ripple', color: '#282828' },
+  { name: 'ripple', sub: 'ripple', color: '#346AA9' },
   { name: 'bitcoincash', sub: 'bitcoincash', color: '#4cca47' },
   { name: 'litecoin', sub: 'litecoin', color: '#838383' },
   { name: 'cardano', sub: 'cardano', color: '#3CC8C8' },
@@ -31,6 +31,7 @@ let subList = [
   // this actually has 9 ... :/
   { name: 'nano', sub: 'nanocurrency', color: '#24a0ed' }, // let's move anno up
 
+  // looks like bitcoin gold was the one we skipped ...
 
   { name: 'OmiseGO', sub: 'omise_go', color: '#1A53F0' },
   { name: 'ICON', sub: 'helloicon', color: '#4c6f8c' },
@@ -40,8 +41,7 @@ let subList = [
   { name: 'verge', sub: 'vergecurrency', color: '#42AFB2' },
   { name: 'Bytecoin', sub: 'BytecoinBCN', color: '#964F51' },
   { name: 'Populous', sub: 'populous_platform', color: '#337ab7' },
-  { name: 'DigixDAO', sub: 'digix', color: '#FF3B3B' }
-
+  { name: 'DigixDAO', sub: 'digix', color: '#FF3B3B' },
 
 ];
 
