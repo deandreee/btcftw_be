@@ -15,6 +15,7 @@ const csv = require('csvtojson');
 const socStats = require.main.require('./cron/socStats');
 const ms = require('ms');
 const utilsTimeout = require.main.require('./utils/utilsTimeout');
+const subList = require.main.require('./cron/subList');
 
 module.exports = () => {
 
@@ -93,6 +94,7 @@ module.exports = () => {
   }));
 
   api.get('/soc-stats', cache('5 minutes'), wrap(function* (req, res) {
+
     let stats = yield db.soc_stats_test.find({ }).sort({ ts: 1 }).toArray();
 
     let series = [];
@@ -100,7 +102,7 @@ module.exports = () => {
     // filter 1
     // let subList = socStats.subList.slice(4,14);
 
-    for (let x of socStats.subList) {
+    for (let x of subList) {
       series.push({ subName: x.sub, color: x.color, data: stats.filter(y => y.subName === x.sub) });
     }
 
@@ -108,7 +110,7 @@ module.exports = () => {
     // let subNames = subList.map(x => x.sub);
     // stats = stats.filter(x => subNames.includes(x.subName));
 
-    res.send({ stats, series, subList: socStats.subList });
+    res.send({ stats, series, subList });
   }));
 
   api.get('/posts/:isPhone*?', cache('5 minutes'), wrap(function* (req, res) {
