@@ -95,7 +95,7 @@ module.exports = () => {
 
   api.get('/soc-stats', cache('5 minutes'), wrap(function* (req, res) {
 
-    let stats = yield db.soc_stats_test.find({ }).sort({ ts: 1 }).toArray();
+    let stats = yield db.soc_stats_2.find({ }).sort({ ts: 1 }).toArray();
 
     let series = [];
 

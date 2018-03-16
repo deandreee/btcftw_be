@@ -4,4 +4,5 @@ module.exports = [
   'soc_stats',
   'soc_stats_clean',
   'soc_stats_test',
+  'soc_stats_2',
 ];
