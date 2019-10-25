@@ -8,9 +8,12 @@ const ms = require("ms");
 const socStats = require("./socStats");
 const moment = require("moment");
 
+const PROD_CONN_STR = ""; // TODO:
+
 let run = function*() {
   return yield co(function*() {
     yield db();
+    let dbProd = yield dbConn(PROD_CONN_STR);
 
     logger.info("after db");
 
