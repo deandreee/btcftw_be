@@ -45,6 +45,8 @@ Combines **24 hour BTC price** chart with TOP Reddit comments for _/r/bitcoin_
 
 Combines **1 month ETH** price chart with TOP Reddit comments for _/r/ethereum_
 
+![](imgs/eth_1mo_10fps.gif)
+
 ### LIVE
 
 **WebSockets LIVE** stream of _/r/bitcoin_ comments
