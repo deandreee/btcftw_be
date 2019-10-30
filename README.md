@@ -1,3 +1,3 @@
 # Just Testing
 
-![](soc22.gif)
+![](soc_22.gif)
