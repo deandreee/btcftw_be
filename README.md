@@ -27,24 +27,32 @@ npm start
 
 ## Features
 
-- **BTC 1Mo** - combines 1 month BTC price chart with TOP Reddit comments for _/r/bitcoin_
-- **BTC 24h** - combines 24 hour BTC price chart with TOP Reddit comments for _/r/bitcoin_
-- **ETH 1Mo** - combines 1 month ETH price chart with TOP Reddit comments for _/r/ethereum_
-- **LIVE** - WebSockets LIVE stream of _/r/bitcoin_ comments
-- **SOC** - Displays chart of new Reddit posts/comments/subscribers for TOP200 Coins
+Each tab has its own feature.
 
-## BTC 1Mo
+### BTC 1Mo
+
+Combines **1 month BTC price** chart with TOP Reddit comments for _/r/bitcoin_
 
 ![](imgs/btc_1mo_15fps.gif)
 
-## BTC 24h
+### BTC 24h
 
-## ETH 1Mo
+Combines **24 hour BTC price** chart with TOP Reddit comments for _/r/bitcoin_
 
-## LIVE
+![](imgs/btc_24h_10fps.gif)
+
+### ETH 1Mo
+
+Combines **1 month ETH** price chart with TOP Reddit comments for _/r/ethereum_
+
+### LIVE
+
+**WebSockets LIVE** stream of _/r/bitcoin_ comments
 
 ![](imgs/live_out_15fps.gif)
 
-## SOC
+### SOC
+
+Displays chart of new Reddit **posts/comments/subscribers** for _TOP200 Coins_
 
 ![](imgs/soc_2_15fps.gif)
