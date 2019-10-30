@@ -1,6 +1,29 @@
-# Reddit + Crypto WebApp
+# Reddit + Crypto WebApp (BackEnd)
 
 Integrates Reddit API with Crypto prices to display useful charts.
+
+## Install
+
+```bash
+
+# install and start mongodb
+# https://docs.mongodb.com/manual/installation/
+
+# clone this repo
+git clone git@github.com:deandreee/btcftw_be.git
+# cd to repo
+cd btcftw_be
+# install dependencies
+npm i
+# start
+npm start
+
+# install and start FrontEnd
+# https://github.com/deandreee/btcftw_fe#install
+
+# open http://localhost:3000/btc
+
+```
 
 ## Features
 
