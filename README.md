@@ -10,7 +10,7 @@ Integrates Reddit API with Crypto prices to display useful charts.
 # https://docs.mongodb.com/manual/installation/
 
 # clone this repo
-git clone git@github.com:deandreee/btcftw_be.git
+git clone https://github.com/deandreee/btcftw_be.git
 # cd to repo
 cd btcftw_be
 # install dependencies
