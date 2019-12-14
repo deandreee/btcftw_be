@@ -55,7 +55,7 @@ co(function*() {
   wsServer.start(server);
   priceLooper.start();
 
-  // socInterval.run(); // COMPLETELY MOVED TO CRONBASE
+  // socInterval.run(); // COMPLETELY MOVED TO CRONBASE (exchange)
 
   yield dbCleaner.remove(); // test
   dbCleaner.start();
