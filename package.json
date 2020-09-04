@@ -32,7 +32,7 @@
     "express-session": "^1.14.2",
     "mocha": "^3.2.0",
     "moment": "^2.21.0",
-    "mongodb": "^2.2.22",
+    "mongodb": "^3.1.13",
     "rockets": "1.2.4",
     "safe-access": "0.1.0",
     "snoostorm": "0.0.5",
